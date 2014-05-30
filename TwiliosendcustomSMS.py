@@ -12,7 +12,8 @@ def ReturnForm():
  
 @app.route('/', methods=['POST'])
 def FormPost():
-  message = client.sms.messages.create(to="+18179460792", from_="+16176064716",
+  sendto = request.values.get('to-number', None)
+  message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716",
                                      body=request.form['Message'])
   return render_template('success.html')
  
