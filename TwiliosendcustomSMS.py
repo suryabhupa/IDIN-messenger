@@ -1,7 +1,17 @@
 from flask import Flask, render_template, request
 from twilio.rest import TwilioRestClient
 
-from local_settings import *
+import os
+
+if os.environ.has_key('twilio_account') and os.environ.has_key('twilio_token'):
+    account = os.environ['twilio_account']
+    token = os.environ['twilio_token']
+else:
+    from local_settings import *
+    
+
+
+#from local_settings import *
 
 app = Flask(__name__)
 client = TwilioRestClient(account, token)
