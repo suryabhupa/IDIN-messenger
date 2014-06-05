@@ -1,1 +1,1 @@
-web: gunicorn TwiliosendcustomSMS:app
+web: gunicorn TwiliosendSMSoremail:app
