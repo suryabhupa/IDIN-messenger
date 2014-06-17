@@ -79,7 +79,10 @@ def response_text():
   if from_number in callers:
       response_text = "Hi " + callers[from_number] + ", thanks for the message!"
   else: response_text = "Hello! Thank you for the message!"    
-  response_message = client.messages.create(to=request.values.get)
+  
+  resp = twilio.twiml.Response()
+  resp.message(response_text)
+  return str(resp)
 
 
 if __name__ == '__main__':
