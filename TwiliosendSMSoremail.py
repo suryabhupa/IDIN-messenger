@@ -97,6 +97,8 @@ def response_text():
   }
   
   response = plivo_api.send_message(params)
+  return str(response)
+  
   
 
 
