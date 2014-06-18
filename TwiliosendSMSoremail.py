@@ -84,6 +84,16 @@ def response_text():
   resp.message(response_text)
   return str(resp)
 
+  message_params = {
+      'src': plivo_number,
+      'dst': from_number,
+      'text': response_text,
+      }
+
+  send_auto_response(text,dst,src)
+  plresp = make_response(response_text) 
+  return str(plresp)
+ 
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=5000)
