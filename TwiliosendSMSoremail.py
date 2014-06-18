@@ -80,13 +80,15 @@ def response_text():
       response_text = "Hi " + callers[from_number] + ", thanks for the message!"
   else: response_text = "Hello! Thank you for the message!"    
   
+  r = plivo.XML.Response()
+  r.addMessage(response_text)
+  return r
+  
   resp = twilio.twiml.Response()
   resp.message(response_text)
   return str(resp)
 
-  r = plivo.XML.Response()
-  r.addMessage(response_text)
-  return r
+
  
 
 if __name__ == '__main__':
