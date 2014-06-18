@@ -6,6 +6,7 @@ import twilio.twiml
 import sendgrid
 import json
 import plivo
+import plivoxml as XML
 
 import os
 
@@ -82,7 +83,7 @@ def response_text():
   
   r = plivo.XML.Response()
   r.addMessage(response_text)
-  return r
+  return str(r)
 
   resp = twilio.twiml.Response()
   resp.message(response_text)
@@ -98,7 +99,7 @@ def response_text():
   
   response = plivo_api.send_message(params)
   return str(response)
-  
+
   
 
 
