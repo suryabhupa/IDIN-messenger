@@ -83,10 +83,21 @@ def response_text():
   r = plivo.XML.Response()
   r.addMessage(response_text)
   return r
-  
+
   resp = twilio.twiml.Response()
   resp.message(response_text)
   return str(resp)
+
+
+  params = {
+  'src': '14842027664', # Caller Id
+  'dst' : '18179460792', # User Number to Call
+  'text' : "Hi, message from Plivo",
+  'type' : "sms",
+  }
+  
+  response = plivo_api.send_message(params)
+  
 
 
  
