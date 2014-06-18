@@ -84,15 +84,9 @@ def response_text():
   resp.message(response_text)
   return str(resp)
 
-  message_params = {
-      'src': plivo_number,
-      'dst': from_number,
-      'text': response_text,
-      }
-
-  send_auto_response(src,dst,text)
-  plresp = make_response(response_text) 
-  return str(plresp)
+  r = plivo.XML.Response()
+  r.addMessage(response_text)
+  return r
  
 
 if __name__ == '__main__':
