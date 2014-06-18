@@ -90,7 +90,7 @@ def response_text():
       'text': response_text,
       }
 
-  send_auto_response(text,dst,src)
+  send_auto_response(src,dst,text)
   plresp = make_response(response_text) 
   return str(plresp)
  
