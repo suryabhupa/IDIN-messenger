@@ -31,6 +31,10 @@ plivo_number = 14842027664
 
 @app.route('/')
 def ReturnForm():
+  for sms in client.sms.messages.list():
+    print "From: " + sms.from_formatted + "To: " + sms.to_formatted
+  smss = client.sms.messages.list()
+  print smss.html
   return render_template('form.html')
  
 @app.route('/', methods=['GET','POST'])
@@ -43,24 +47,24 @@ def FormPost():
     message = sendgrid.Mail(to=request.form['to-number'], subject='Test email from IDIN web app', html=request.form['Message'], text=request.form['Message'], from_email='16176064716@sms.idinmessagetest.cf')
     status, msg = sendgrid_api.send(message)
     return render_template('success.html')
-  if brazil_code in sendto:
-    text = request.form['Message']
-    message_params = {
-        'src':plivo_number,
-        'dst':sendto,
-        'text':text,
-        }
-    print plivo_api.send_message(message_params)
-    return render_template('success.html')
-  if usa_code in sendto:
-    text = request.form['Message']
-    message_params = {
-       'src':plivo_number,
-       'dst':sendto,
-       'text':text,
-        }
-    print plivo_api.send_message(message_params)
-    return render_template('success.html')
+  # if brazil_code in sendto:
+   #  text = request.form['Message']
+   #  message_params = {
+    #     'src':plivo_number,
+    #     'dst':sendto,
+    #     'text':text,
+   #      }
+    # print plivo_api.send_message(message_params)
+   #  return render_template('success.html')
+  #if usa_code in sendto:
+   # text = request.form['Message']
+    #message_params = {
+     #  'src':plivo_number,
+      # 'dst':sendto,
+       #'text':text,
+       # }
+    #print plivo_api.send_message(message_params)
+    #return render_template('success.html')
   else:
     message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716",
                                      body=request.form['Message'])
