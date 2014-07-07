@@ -29,13 +29,13 @@ plivo_api = plivo.RestAPI(placcount, pltoken)
 
 plivo_number = 14842027664
 
-@app.route('/')
-def ReturnForm():
-  for sms in client.sms.messages.list():
-    print "From: " + sms.from_formatted + "To: " + sms.to_formatted
-  smss = client.sms.messages.list()
-  print smss.html
-  return render_template('form.html')
+# @app.route('/')
+# def ReturnForm():
+  # for sms in client.sms.messages.list():
+    # print "From: " + sms.from_formatted + "To: " + sms.to_formatted
+  # smss = client.sms.messages.list()
+  # print smss.html
+  # return render_template('form.html')
  
 @app.route('/', methods=['GET','POST'])
 def FormPost():
