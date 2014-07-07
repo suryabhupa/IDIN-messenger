@@ -58,15 +58,15 @@ def FormPost():
    #      }
     # print plivo_api.send_message(message_params)
    #  return render_template('success.html')
-  #if usa_code in sendto:
-   # text = request.form['Message']
-    #message_params = {
-     #  'src':plivo_number,
-      # 'dst':sendto,
-       #'text':text,
-       # }
-    #print plivo_api.send_message(message_params)
-    #return render_template('success.html')
+  if usa_code in sendto:
+   text = request.form['Message']
+   message_params = {
+    'src':plivo_number,
+    'dst':sendto,
+    'text':text,
+    }
+    print plivo_api.send_message(message_params)
+    return render_template('success.html')
   else:
     message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716",
                                      body=request.form['Message'])
