@@ -105,12 +105,12 @@ def response_text():
   response = plivo_api.send_message(params)
   return str(response)
 
-@app.route('/handle-sms', methods=['POST']) 
-def hello(): 
-    Text = request.forms.get('Text')
-    From = request.forms.get('From')
-    print "Message received: %s - by %s" % (Text, From)
-    return HTTPResponse(status=200)
+#@app.route('/handle-sms', methods=['POST']) 
+#def hello(): 
+#    Text = request.forms.get('Text')
+#    From = request.forms.get('From')
+#    print "Message received: %s - by %s" % (Text, From)
+#    return HTTPResponse(status=200)
 
 
  
