@@ -1,13 +1,14 @@
 # This component handles outbound messaging.
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, make_response
 from twilio.rest import TwilioRestClient
-from bottle import run, request, HTTPResponse
+#from bottle import run, request, HTTPResponse
 import twilio.twiml
 import sendgrid
 import json
 import plivo
 import plivoxml as XML
+import requests
 
 import os
 
