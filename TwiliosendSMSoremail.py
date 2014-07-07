@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, redirect
 from twilio.rest import TwilioRestClient
+from bottle import run, request, HTTPResponse
 import twilio.twiml
 import sendgrid
 import json
@@ -36,7 +37,7 @@ def ReturnForm():
   #smss = client.sms.messages.list()
   #print smss.html
   return render_template('form.html')
- 
+
 @app.route('/', methods=['GET','POST'])
 def FormPost():
   sendto = request.form['to-number']
@@ -104,7 +105,12 @@ def response_text():
   response = plivo_api.send_message(params)
   return str(response)
 
-  
+@app.route('/handle-sms', methods=['POST']) 
+def hello(): 
+    Text = request.forms.get('Text')
+    From = request.forms.get('From')
+    print "Message received: %s - by %s" % (Text, From)
+    return HTTPResponse(status=200)
 
 
  
