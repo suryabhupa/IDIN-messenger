@@ -89,7 +89,7 @@ def response_text():
   
   r = plivo.XML.Response()
   r.addMessage(response_text)
-  return str(r)
+  return r
 
   resp = twilio.twiml.Response()
   resp.message(response_text)
