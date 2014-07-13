@@ -29,7 +29,8 @@ client = TwilioRestClient(account, token)
 sendgrid_api = sendgrid.SendGridClient(username, password)
 plivo_api = plivo.RestAPI(placcount, pltoken)
 
-plivo_number = 14842027664
+#plivo_number = 14842027664
+plivo_number = "14842027664"
 
 @app.route('/')
 def ReturnForm():
@@ -49,15 +50,14 @@ def FormPost():
     message = sendgrid.Mail(to=request.form['to-number'], subject='Test email from IDIN web app', html=request.form['Message'], text=request.form['Message'], from_email='16176064716@sms.idinmessagetest.cf')
     status, msg = sendgrid_api.send(message)
     return render_template('success.html')
-  # if brazil_code in sendto:
-   #  text = request.form['Message']
-   #  message_params = {
-    #     'src':plivo_number,
-    #     'dst':sendto,
-    #     'text':text,
-   #      }
-    # print plivo_api.send_message(message_params)
-   #  return render_template('success.html')
+  if brazil_code in sendto:
+      text = request.form['Message']
+      message_params = {
+        'src':plivo_number,
+        'dst':sendto,
+        'text':text}
+      print plivo_api.send_message(message_params)
+      return render_template('success.html')
   if usa_code in sendto:
       text = request.form['Message']
       message_params = {
@@ -81,29 +81,38 @@ callers = {
 
 @app.route("/handle-sms", methods=['GET', 'POST'])
 def response_text():
-  from_number = request.values.get('From', None)
-  if from_number in callers:
-      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
-  else: response_text = "Hello! Thank you for the message!"    
+  from_number = request.values.get('From', '')
+  print "received sms"
+  print "From: ", from_number
+#  if from_number in callers:
+#      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
+#  else: response_text = "Hello! Thank you for the message!"    
+#  
+#  r = plivo.XML.Response()
+#  r.addMessage(response_text)
+#  return r
+#
+#  resp = twilio.twiml.Response()
+#  resp.message(response_text)
+#  return str(resp)
+#
+
+  #params = {
+  #'src': '14842027664', # Caller Id
+  #'dst' : '18179460792', # User Number to Call
+  #'text' : "Hi, message from Plivo",
+  #'type' : "sms",
+  #}
   
-  r = plivo.XML.Response()
-  r.addMessage(response_text)
-  return r
-
-  resp = twilio.twiml.Response()
-  resp.message(response_text)
-  return str(resp)
-
-
   params = {
-  'src': '14842027664', # Caller Id
-  'dst' : '18179460792', # User Number to Call
-  'text' : "Hi, message from Plivo",
+  'src': plivo_number, # Caller Id
+  'dst' : from_number, # User Number to Call
+  'text' : "Hi!",
   'type' : "sms",
   }
-  
   response = plivo_api.send_message(params)
-  return str(response)
+  return "herp derp"
+  #return str(response)
 
 #@app.route('/handle-sms', methods=['POST']) 
 #def hello(): 
