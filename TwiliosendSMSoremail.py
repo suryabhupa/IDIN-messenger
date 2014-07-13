@@ -84,13 +84,16 @@ def response_text():
   from_number = request.values.get('From', '')
   print "received sms"
   print "From: ", from_number
-#  if from_number in callers:
-#      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
-#  else: response_text = "Hello! Thank you for the message!"    
-#  
-#  r = plivo.XML.Response()
-#  r.addMessage(response_text)
-#  return r
+  #  if from_number in callers:
+  #      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
+  #  else: response_text = "Hello! Thank you for the message!"    
+  #  
+  response_text = "Good day, sir!"
+  r = plivo.XML.Response()
+  r.addMessage(response_text)
+  resp = r.to_xml()
+  print resp
+  return resp
 #
 #  resp = twilio.twiml.Response()
 #  resp.message(response_text)
