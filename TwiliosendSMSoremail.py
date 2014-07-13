@@ -88,9 +88,10 @@ def response_text():
   #      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
   #  else: response_text = "Hello! Thank you for the message!"    
   #  
+
   response_text = "Good day, sir!"
   r = plivo.XML.Response()
-  r.addMessage(response_text)
+  r.addMessage(response_text, src=plivo_number, dst=from_number)
   resp = r.to_xml()
   print resp
   return resp
