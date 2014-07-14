@@ -89,12 +89,12 @@ def response_text():
   #  else: response_text = "Hello! Thank you for the message!"    
   #  
 
-  response_text = "Good day, sir!"
-  r = plivo.XML.Response()
-  r.addMessage(response_text, src=plivo_number, dst=from_number)
-  resp = r.to_xml()
-  print resp
-  return resp
+  #response_text = "Good day, sir!"
+  #r = plivo.XML.Response()
+  #r.addMessage(response_text, src=plivo_number, dst=from_number)
+  ##resp = r.to_xml()
+  #print resp
+  #return r
 #
 #  resp = twilio.twiml.Response()
 #  resp.message(response_text)
@@ -111,11 +111,11 @@ def response_text():
   params = {
   'src': plivo_number, # Caller Id
   'dst' : from_number, # User Number to Call
-  'text' : "Hi!",
+  'text' : "It works! Hello.",
   'type' : "sms",
   }
   response = plivo_api.send_message(params)
-  return "herp derp"
+  return "success"
   #return str(response)
 
 #@app.route('/handle-sms', methods=['POST']) 
