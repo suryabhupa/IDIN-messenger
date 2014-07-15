@@ -29,8 +29,6 @@ if os.environ.has_key('twilio_account') and os.environ.has_key('twilio_token') a
 else:
     from local_settings import *
 
-from local_settings import *
-
 from models import Message
 
 client = TwilioRestClient(account, token)
