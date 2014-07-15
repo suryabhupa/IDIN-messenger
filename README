@@ -10,6 +10,6 @@ To change database structure:
 To apply changes to the heroku database:
   after pushing code,
 
-  heroku run python manage.py db upgrade
+  heroku run python manage.py db upgrade --app twilio-messenger 
 
   migrate is not necessary as the migration files will be transfered
