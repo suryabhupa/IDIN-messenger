@@ -1,1 +1,15 @@
 Hello, this will be the readme documentation for the communication application files.
+
+To run server:
+  python run.py
+
+To change database structure:
+  python manage.py db migrate # creates python migration files
+  python manage.py db upgrade # runs migration files to alter the database
+  
+To apply changes to the heroku database:
+  after pushing code,
+
+  heroku run python manage.py db upgrade
+
+  migrate is not necessary as the migration files will be transfered

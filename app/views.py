@@ -1,6 +1,6 @@
 # This component handles outbound messaging.
 
-from flask import render_template
+from flask import render_template, request
 from app import app, db
 from models import Message
 
