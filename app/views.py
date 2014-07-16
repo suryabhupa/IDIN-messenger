@@ -113,10 +113,13 @@ def response_text():
   'text' : "It works! Hello.",
   'type' : "sms",
   }
-  response = plivo_api.send_message(params)
-  recd = Message(to_number=params['src'], from_number=params['dst'], text=sms_received)
+
+  recd = Message(to_number=params['src'], from_number=params['dst'], text=request.values.get('Text', ''))
   db.session.add(recd)
   db.session.commit()
+
+  response = plivo_api.send_message(params)
+
   autresp = Message(to_number=params['dst'], from_number=params['src'], text=params['text'])
   db.session.add(autresp)
   db.session.commit()
