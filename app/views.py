@@ -1,6 +1,7 @@
 # This component handles outbound messaging.
 
 from flask import render_template, request
+from flask.ext.restless import APIManager
 from app import app, db
 from models import Message
 
@@ -37,6 +38,12 @@ plivo_api = plivo.RestAPI(placcount, pltoken)
 
 #plivo_number = 14842027664
 plivo_number = "14842027664"
+
+
+#REST API
+
+manager = APIManager(app, flask_sqlalchemy_db=db)
+manager.create_api(Message, methods=['GET'])
 
 @app.route('/')
 def ReturnForm():
