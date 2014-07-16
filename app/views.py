@@ -70,7 +70,7 @@ def FormPost():
         'dst':sendto,
         'text':text}
       print plivo_api.send_message(message_params)
-      m = models.Message(to_number=message_params['dst'],
+      m = Message(to_number=message_params['dst'],
       from_number=message_params['src'], text=message_params['text'])
       db.session.add(m)
       db.session.commit()
@@ -82,14 +82,14 @@ def FormPost():
         'dst':sendto,
         'text':text}
       print plivo_api.send_message(message_params)
-      m = models.Message(to_number=message_params['dst'],
+      m = Message(to_number=message_params['dst'],
       from_number=message_params['src'], text=message_params['text'])
       db.session.add(m)
       db.session.commit()
       return render_template('success.html')
   else:
     message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716", body=request.form['Message'])
-    m = models.Message(to_number=request.form['to-number'], from_number="+16176064716", text=request.form['Message'])
+    m = Message(to_number=request.form['to-number'], from_number="+16176064716", text=request.form['Message'])
     db.session.add(m)
     db.session.commit()
     return render_template('success.html')
@@ -114,10 +114,10 @@ def response_text():
   'type' : "sms",
   }
   response = plivo_api.send_message(params)
-  recd = models.Message(to_number=params['src'], from_number=params['dst'], text=sms_received)
+  recd = Message(to_number=params['src'], from_number=params['dst'], text=sms_received)
   db.session.add(recd)
   db.session.commit()
-  autresp = models.Message(to_number=params['dst'], from_number=params['src'], text=params['text'])
+  autresp = Message(to_number=params['dst'], from_number=params['src'], text=params['text'])
   db.session.add(autresp)
   db.session.commit()
   return "success"
