@@ -62,7 +62,7 @@ def FormPost():
   if at_symbol in sendto:
     message = sendgrid.Mail(to=request.form['to-number'], subject='Test email from IDIN web app', html=request.form['Message'], text=request.form['Message'], from_email='16176064716@sms.idinmessagetest.cf')
     status, msg = sendgrid_api.send(message)
-    return render_template('success.html')
+
   if brazil_code in sendto:
       text = request.form['Message']
       message_params = {
@@ -74,7 +74,10 @@ def FormPost():
       from_number=message_params['src'], text=message_params['text'])
       db.session.add(m)
       db.session.commit()
-      return render_template('success.html')
+      #return render_template('success.html')
+      #return render_template('table.html')
+      #Return the form and the messages so far
+
   if usa_code in sendto:
       text = request.form['Message']
       message_params = {
@@ -86,14 +89,20 @@ def FormPost():
       from_number=message_params['src'], text=message_params['text'])
       db.session.add(m)
       db.session.commit()
-      return render_template('success.html')
+      #return render_template('success.html')
+      #return render_template('table.html')
   else:
     message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716", body=request.form['Message'])
     m = Message(to_number=request.form['to-number'], from_number="+16176064716", text=request.form['Message'])
     db.session.add(m)
     db.session.commit()
-    return render_template('success.html')
-		
+    #return render_template('success.html')
+    #return render_template('table.html')
+		#msgs = query_db('select text from messages;')
+
+  messages = Message.query.all()
+  return render_template('table.html', messages=messages)
+
 # This component handles incoming messages.
 
 callers = {

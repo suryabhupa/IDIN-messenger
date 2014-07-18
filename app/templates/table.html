@@ -1,0 +1,10 @@
+<html lang="en">
+<body>
+    <h1>Messages till now</h1>
+    <ul>
+    {% for message in messages %}
+      <li>{{ message.id}}, {{message.text}}, {{message.time_sent}}, {{ message.from_number }}, {{message.from_number}}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
