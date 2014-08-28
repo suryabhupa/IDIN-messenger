@@ -63,7 +63,8 @@ def FormPost():
     message = sendgrid.Mail(to=request.form['to-number'], subject='Test email from IDIN web app', html=request.form['Message'], text=request.form['Message'], from_email='16176064716@sms.idinmessagetest.cf')
     status, msg = sendgrid_api.send(message)
 
-  if brazil_code in sendto:
+  #if brazil_code in sendto:
+  else:
       text = request.form['Message']
       message_params = {
         'src':plivo_number,
@@ -78,24 +79,24 @@ def FormPost():
       #return render_template('table.html')
       #Return the form and the messages so far
 
-  if usa_code in sendto:
-      text = request.form['Message']
-      message_params = {
-        'src':plivo_number,
-        'dst':sendto,
-        'text':text}
-      print plivo_api.send_message(message_params)
-      m = Message(to_number=message_params['dst'],
-      from_number=message_params['src'], text=message_params['text'])
-      db.session.add(m)
-      db.session.commit()
+  #if usa_code in sendto:
+  #    text = request.form['Message']
+  #    message_params = {
+  #      'src':plivo_number,
+  #      'dst':sendto,
+  #      'text':text}
+  #    print plivo_api.send_message(message_params)
+  #    m = Message(to_number=message_params['dst'],
+  #    from_number=message_params['src'], text=message_params['text'])
+  #    db.session.add(m)
+  #    db.session.commit()
       #return render_template('success.html')
       #return render_template('table.html')
-  else:
-    message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716", body=request.form['Message'])
-    m = Message(to_number=request.form['to-number'], from_number="+16176064716", text=request.form['Message'])
-    db.session.add(m)
-    db.session.commit()
+  #else:
+  #  message = client.sms.messages.create(to=request.form['to-number'], from_="+16176064716", body=request.form['Message'])
+  #  m = Message(to_number=request.form['to-number'], from_number="+16176064716", text=request.form['Message'])
+  #  db.session.add(m)
+  #  db.session.commit()
     #return render_template('success.html')
     #return render_template('table.html')
 		#msgs = query_db('select text from messages;')
