@@ -103,8 +103,7 @@ def FormPost():
 
   messages = Message.query.all()
   print "messages", messages
-  # print "reversed messages", messages.reverse()
-  return render_template('table.html', messages=messages.reverse())
+  return render_template('table.html', messages=messages)
 
 # This component handles incoming messages.
 
