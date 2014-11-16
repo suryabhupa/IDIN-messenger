@@ -102,7 +102,9 @@ def FormPost():
 		#msgs = query_db('select text from messages;')
 
   messages = Message.query.all()
-  return render_template('table.html', messages=messages)
+  print "messages", messages
+  # print "reversed messages", messages.reverse()
+  return render_template('table.html', messages=messages.reverse())
 
 # This component handles incoming messages.
 
@@ -138,8 +140,8 @@ def response_text():
 
   #  if from_number in callers:
   #      response_text = "Hi " + callers[from_number] + ", thanks for the message!"
-  #  else: response_text = "Hello! Thank you for the message!"    
-  #  
+  #  else: response_text = "Hello! Thank you for the message!"
+  #
 
   #response_text = "Good day, sir!"
   #r = plivo.XML.Response()
@@ -159,12 +161,12 @@ def response_text():
   #'text' : "Hi, message from Plivo",
   #'type' : "sms",
   #}
-  
-#@app.route('/handle-sms', methods=['POST']) 
-#def hello(): 
+
+#@app.route('/handle-sms', methods=['POST'])
+#def hello():
 #    Text = request.forms.get('Text')
 #    From = request.forms.get('From')
 #    print "Message received: %s - by %s" % (Text, From)
 #    return HTTPResponse(status=200)
 
- 
+
