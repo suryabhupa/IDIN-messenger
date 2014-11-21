@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">	
+    <meta charset="utf-8">
 	<link href="../static/site.css" type="text/css" rel="stylesheet">
 	<!--
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css" href="site.css">
 </head>
 <body>
-    <h1>Messages Till Now</h1>
-    <table border="1" style="width:1000px">
+  <h1>Sent Messages</h1>
+  <table border="1" style="width:1000px">
     <style>
 		table,th,td
 		{border:1px solid black;
@@ -23,6 +23,12 @@
 		th,td
 		{padding:20px;}
 	</style>
+  <tr>
+    <td>Message ID</td>
+    <td>Message Content</td>
+    <td>Time Sent</td>
+    <td>Sent From</td>
+    <td>Sent To</td>
 	{% for message in messages %}
 		<tr>
 			<td>{{message.id}}</td>
