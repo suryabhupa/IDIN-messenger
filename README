@@ -1,5 +1,12 @@
 Hello, this will be the readme documentation for the communication application files.
 
+It's recommended to install virtualenvwrapper
+
+To install python packages:
+  pip install -r requirements.txt
+
+Rename sample_local_settings to local_settings and fill in the info (or get file from someone else)
+
 To run server:
   python run.py
 

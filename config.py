@@ -8,8 +8,8 @@ else:
     # defaults to a sqllite database named data.db
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'data.db')
     print "WARNING: using default sqlite database"
+    print SQLALCHEMY_DATABASE_URI
 
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'migrations')
 
-print SQLALCHEMY_DATABASE_URI
 

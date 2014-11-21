@@ -1,5 +1,6 @@
 *~
 *.pyc
+*.db
 base/
 local_settings.py
 old/
