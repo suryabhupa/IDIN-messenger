@@ -102,6 +102,7 @@ def FormPost():
 		#msgs = query_db('select text from messages;')
 
   messages = Message.query.all()
+  messages.reverse()
   print "messages", messages
   return render_template('table.html', messages=messages)
 
