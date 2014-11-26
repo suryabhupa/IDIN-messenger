@@ -39,7 +39,7 @@ manager.create_api(Message, methods=['GET'])
 
 @app.route('/')
 def ReturnForm():
-    return render_template('form.html')
+    return render_template('edited_form.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def FormPost():
