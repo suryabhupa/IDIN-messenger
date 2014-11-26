@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+
+{% block html_attribs %} lang="en" {% endblock %} 
+
+{% block html %}
+<!-- <!DOCTYPE html>  -->
+{% block metas %}
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">	
+{% endblock %}
+
+{% block styles %}
+	<link href="../static/site.css" type="text/css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+	<!--
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	-->
+
+{% block content %}
+
+	<h1>Plivo Messaging Tester V1.0</h1>
+	<h2>Enter the message you wish to send:</h2>
+	<form action="." method="POST">
+		Message: <input type="text" name="Message">
+		Email or phone number: <input type="text" name="to-number">
+		<input type="submit" name="my-form" value="Send">
+	</form>
+
+{% endblock %}
+
+<!-- </html> -->
+{% endblock %}
+
+{% block head %}
+	{{super()}}
+	{{fixes.ie8()}}
+{% endblock %}
